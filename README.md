@@ -6,8 +6,8 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 ![Pipeline (2)](https://github.com/MartinaVojtkova/GeneFluxPipeline/assets/101507399/f6bffe38-e6a9-4289-ad55-659f794bc7f4)
 
 ## Input
-A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found in _Input/input_template.tsv_.
-The pipeline's parameters can be changed in the config.yaml file. 
+A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](example_input/input_template.tsv).
+The pipeline's parameters can be changed in the [config.yaml](config.yaml) file. 
 
 ### Pipeline Parameters (config.yaml)
 - **input_list:** List of the sample names and file paths. 
@@ -16,7 +16,7 @@ The pipeline's parameters can be changed in the config.yaml file.
 - **drep_sc:** dRep secondary clustering threshold (Default is 0.95) 
 - **genus:**  Genus for bacterial genome Annotation
 - **slice_size:** Portion of all genes to analyse (3 = one third of genes)
-- **k-mer_size:** K-mer lenght for KMA distance calculation
+- **k-mer_size:** K-mer length for KMA distance calculation
 
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
@@ -34,7 +34,7 @@ snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
 The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
-The main output of the pipeline is gene_metrics.tsv file. See example output here. 
+The main output of the pipeline is gene_metrics.tsv file. See example output [here](example_output/gene_metrics_example.tsv). 
 
 **gene_metrics.tsv** contains: 
 - **Gene:** Gene cluster name as provided by Roary 
