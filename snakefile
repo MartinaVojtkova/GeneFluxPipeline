@@ -62,7 +62,7 @@ rule dRep_make_matrices:
     conda: "environment.yaml"
     shell:
         """
-        Rscript bin/dRep_make_matrices.R {input} {params.inlist} {output.dist} {output.sim}
+        Rscript scripts/dRep_make_matrices.R {input} {params.inlist} {output.dist} {output.sim}
         """
 
 rule run_prokka:
@@ -111,7 +111,7 @@ rule presence_absence_matrix:
     shell:
         """
         mkdir -p {params.outdir}
-        Rscript bin/create_presence_absence_matrix.R {input.metadata} {input.cluster_file} {params.outdir} 
+        Rscript scripts/create_presence_absence_matrix.R {input.metadata} {input.cluster_file} {params.outdir} 
         """
 
 rule make_gene_list:
@@ -125,7 +125,7 @@ rule make_gene_list:
     conda: "environment.yaml"
     shell:
         """
-        Rscript bin/create_gene_list.R {input} {params.outdir} {params.slice_size}
+        Rscript scripts/create_gene_list.R {input} {params.outdir} {params.slice_size}
         """
 
 rule rename_reference_db:
@@ -251,7 +251,7 @@ rule concatenate_sequences:
     input:
         expand("results/sequences/{genome}/{genome}_flanking_region.fasta", genome=samples.keys())
     output:
-        "results/all_sequences_combined.fasta"
+        "results/all_sequences_comscriptsed.fasta"
     shell:
         """
         cat {input} > {output}
@@ -259,7 +259,7 @@ rule concatenate_sequences:
 
 checkpoint split_fasta_by_gene:
     input:
-        "results/all_sequences_combined.fasta"
+        "results/all_sequences_comscriptsed.fasta"
     output:
         directory("results/per_gene_sequences/target_and_flank")
     shell:
@@ -466,7 +466,7 @@ rule get_flank_annotations_per_genome:
     shell:
         """
         mkdir -p {output}
-        python3 bin/bed_to_flank_annotation.py --gff {input.gff} --bed {input.bed} --outdir {output}
+        python3 scripts/bed_to_flank_annotation.py --gff {input.gff} --bed {input.bed} --outdir {output}
         """
 
  
@@ -566,7 +566,7 @@ rule flank_index_calculation:
         """
         mkdir -p {params.matrixdir}
         mkdir -p {params.metricsdir}
-        python3 bin/flank_identity.py --gff {input.gff} --outfile {output.matrix} --metricsfile {output.metrics}
+        python3 scripts/flank_identity.py --gff {input.gff} --outfile {output.matrix} --metricsfile {output.metrics}
         """
 
 def matrix_input(wildcards):
@@ -640,7 +640,7 @@ rule procrustes:
     shell:
         """
         mkdir -p {params.outdir}
-        Rscript bin/procrustes.R {input.dRep} {input.kma} {output}         
+        Rscript scripts/procrustes.R {input.dRep} {input.kma} {output}         
         """
 
 def proc_column_input(wildcards):
