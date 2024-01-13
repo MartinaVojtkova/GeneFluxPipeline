@@ -6,7 +6,7 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 ![Pipeline (2)](https://github.com/MartinaVojtkova/GeneFluxPipeline/assets/101507399/f6bffe38-e6a9-4289-ad55-659f794bc7f4)
 
 ## Input
-A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](example_input/input_template.tsv).
+A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](templates/input_template.tsv).
 The pipeline's parameters can be changed in the [config.yaml](config.yaml) file. 
 
 ### Pipeline Parameters (config.yaml)
@@ -34,7 +34,7 @@ snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
 The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
-The main output of the pipeline is gene_metrics.tsv file. See example output [here](example_output/gene_metrics_example.tsv). 
+The main output of the pipeline is gene_metrics.tsv file. See example output [here](templates/gene_metrics_example.tsv). 
 
 **gene_metrics.tsv** contains: 
 - **Gene:** Gene cluster name as provided by Roary 
