@@ -7,7 +7,7 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 
 ## Input
 A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found in _Input/input_template.tsv_.
-The pipeline's parameters can be changed in the config.yaml file. 
+The pipeline's parameters can be changed in the [config.yaml](config.yaml) file. 
 
 ### Pipeline Parameters (config.yaml)
 - **input_list:** List of the sample names and file paths. 
