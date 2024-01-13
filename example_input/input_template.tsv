@@ -1,0 +1,13 @@
+#sample_name	genome_path
+E_coli_GCF_000005845.2	/path/to/E_coli/data/GCF_000005845.2/GCF_000005845.2_ASM584v2_genomic.fna
+E_coli_GCF_000006665.1	/path/to/E_coli/data/GCF_000006665.1/GCF_000006665.1_ASM666v1_genomic.fna
+E_coli_GCF_000007445.1	/path/to/E_coli/data/GCF_000007445.1/GCF_000007445.1_ASM744v1_genomic.fna
+E_coli_GCF_000008865.2	/path/to/E_coli/data/GCF_000008865.2/GCF_000008865.2_ASM886v2_genomic.fna
+E_coli_GCF_000009565.1	/path/to/E_coli/data/GCF_000009565.1/GCF_000009565.1_ASM956v1_genomic.fna
+E_coli_GCF_000010245.2	/path/to/E_coli/data/GCF_000010245.2/GCF_000010245.2_ASM1024v1_genomic.fna
+E_coli_GCF_000010385.1	/path/to/E_coli/data/GCF_000010385.1/GCF_000010385.1_ASM1038v1_genomic.fna
+E_coli_GCF_000010485.1	/path/to/E_coli/data/GCF_000010485.1/GCF_000010485.1_ASM1048v1_genomic.fna
+E_coli_GCF_000010745.1	/path/to/E_coli/data/GCF_000010745.1/GCF_000010745.1_ASM1074v1_genomic.fna
+E_coli_GCF_000010765.1	/path/to/E_coli/data/GCF_000010765.1/GCF_000010765.1_ASM1076v1_genomic.fna
+E_coli_GCF_000013265.1	/path/to/E_coli/data/GCF_000013265.1/GCF_000013265.1_ASM1326v1_genomic.fna
+E_coli_GCF_000013305.1	/path/to/E_coli/data/GCF_000013305.1/GCF_000013305.1_ASM1330v1_genomic.fna

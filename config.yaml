@@ -1,0 +1,19 @@
+#Path to the input list
+input_list: "/home/projects/cge/data/projects/other/gene_flux_ecoli/pipeline/input/input_list_real_data.tsv"   #List of input files and metadata
+
+#Desired flanking region length 
+flank_length: "10000"
+
+#dRep parameters
+drep_pc: "0.99"       #Primary clustering threshold for MASH
+drep_sc: "0.95"       #Secondary clustering threshold
+
+#Prokka "Genus" for Annotaring Genomes
+genus:  "Escherichia"
+
+#portions of genes to analyse (3 = one third of genes)
+slice_size: "3"
+
+#K-mer size for KMA distance calculation
+k-mer_size: "16" 
+
