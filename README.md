@@ -18,11 +18,19 @@ The pipeline's parameters can be changed in the config.yaml file.
 - **slice_size:** Portion of all genes to analyse (3 = one third of genes)
 - **k-mer_size:** K-mer lenght for KMA distance calculation
 
-## How to Run 
-This is a snakemake pipeline. To execute Snakemake (v 6.1.9) and Miniconda (v 4.11.0) have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
-Run the following command: 
+## Run on Computerome
+This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
+To execute **Snakemake (v 6.1.9)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+Load the required packages: 
 ```
-snakemake --use-conda --cores {CPUs}
+module purge
+module load tools
+module load miniconda3/4.11.0  
+module load snakemake/6.9.1
+```
+Run the pipeline: 
+```
+snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
 The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
