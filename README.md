@@ -1,4 +1,4 @@
-# GeneFluxPipeline
+# Gene Flux Analysis Pipeline
 
 ## Introduction 
 This pipeline was designed to analyse the gene synteny and gene flux of core and accessory genes in bacteria. The input genomes are automatically annotated. Next, pan-genome analysis is performed, which serves as a base for gene selection. Selected sample of core and accessory genes is then subject to gene synteny analysis. The k-mer hamming distance, flank identity index  and average nucleotide identity matrices are calculated. Whole genome distances/similarities are determined. Distance differences between whole-genomes, target genes and their flanking environments are then analyzed using Procrustes Analysis. 
@@ -41,6 +41,8 @@ The main output of the pipeline is gene_metrics.tsv file. See example output her
 - **Kmer_distance_median:** Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
 - **ANI_median:** Per-gene median value of the flanking region average nucleotide identity matrix
 - **Flank_index_median:** Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
+- **Proc_corelation:** The correlation between the flanking region k-mer distances and whole genome distances. (Symmetric Procrustes Analysis)
+- **Proc_significance:** The significance value for Procrustes correlation. 
 
 The complete distance/similiarity matrices are provided as supplementary output for each gene.  
 
