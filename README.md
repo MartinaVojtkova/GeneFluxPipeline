@@ -12,11 +12,13 @@ The pipeline's parameters can be changed in the [config.yaml](config.yaml) file.
 ### Pipeline Parameters (config.yaml)
 - **input_list:** List of the sample names and file paths. 
 - **flank_length:** The length of the upstream and downstream flanking sequence of the target genes. (Default is 10 000)
-- **drep_pc:** dRep primary clustering threshold for MASH (Default is 0.99) 
-- **drep_sc:** dRep secondary clustering threshold (Default is 0.95) 
+- **drep_pc:**  `dRep compare` primary clustering threshold for MASH (Default is 0.99) 
+- **drep_sc:** `dRep compare` secondary clustering threshold (Default is 0.95) 
 - **genus:**  Genus for bacterial genome Annotation
 - **slice_size:** Portion of all genes to analyse (3 = one third of genes)
 - **k-mer_size:** K-mer length for KMA distance calculation
+
+To choose the correct primary and secondary clustering thresholds, please consult the [dRep docummentation](https://drep.readthedocs.io/en/latest/overview.html).
 
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
