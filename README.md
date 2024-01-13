@@ -34,13 +34,13 @@ snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
 The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
-The main output of the pipeline is gene_metrics.tsv file. 
+The main output of the pipeline is gene_metrics.tsv file. See example output here. 
 
 **gene_metrics.tsv** contains: 
-- Gene: Gene cluster name as provided by Roary 
-- Kmer_distance_median: Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
-- ANI_median: Per-gene median value of the flanking region average nucleotide identity matrix
-- Flank_index_median: Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
+- **Gene:** Gene cluster name as provided by Roary 
+- **Kmer_distance_median:** Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
+- **ANI_median:** Per-gene median value of the flanking region average nucleotide identity matrix
+- **Flank_index_median:** Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
 
 The complete distance/similiarity matrices are provided as supplementary output for each gene.  
 
