@@ -654,7 +654,7 @@ rule merge_proc_results:
         "results/metrics/procrustes.results"
     shell:
         """
-        echo -e "Gene\tCorrelation\tSignif" > {output} && cat results/procrustes/temp/*_proc.metrics >> {output}
+        echo -e "Gene\tProc_correlation\tProc_significance" > {output} && cat results/procrustes/temp/*_proc.metrics >> {output}
         """
 
 rule merge_metrics:
