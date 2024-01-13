@@ -1,4 +1,4 @@
-# GeneFluxPipeline
+# Gene Flux Analysis Pipeline
 
 ## Introduction 
 This pipeline was designed to analyse the gene synteny and gene flux of core and accessory genes in bacteria. The input genomes are automatically annotated. Next, pan-genome analysis is performed, which serves as a base for gene selection. Selected sample of core and accessory genes is then subject to gene synteny analysis. The k-mer hamming distance, flank identity index  and average nucleotide identity matrices are calculated. Whole genome distances/similarities are determined. Distance differences between whole-genomes, target genes and their flanking environments are then analyzed using Procrustes Analysis. 
