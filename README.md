@@ -5,6 +5,7 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 
 ![Pipeline (2)](https://github.com/MartinaVojtkova/GeneFluxPipeline/assets/101507399/f6bffe38-e6a9-4289-ad55-659f794bc7f4)
 
+
 ## Input
 A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](templates/input_template.tsv).
 The pipeline's parameters can be changed in the [config.yaml](config.yaml) file. 
@@ -23,6 +24,11 @@ To choose the correct primary and secondary clustering thresholds, please consul
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
 To execute **Snakemake (v 6.1.9)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+
+Clone the repository: 
+```
+git clone https://github.com/MartinaVojtkova/GeneFluxPipeline
+```
 Load the required packages: 
 ```
 module purge
