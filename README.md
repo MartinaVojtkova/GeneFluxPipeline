@@ -66,4 +66,9 @@ The complete distance/similiarity matrices are provided as supplementary output 
 [![KMA](https://img.shields.io/badge/KMA-≥1.4.0-brightgreen.svg?style=flat)](https://bitbucket.org/genomicepidemiology/kma/src/master/)
 
 [![R](https://img.shields.io/badge/R-≥4.1.3-brightgreen.svg?style=flat)](https://www.r-project.org/)
+[![R-vegan](https://img.shields.io/badge/R_vegan-≥2.6.0-brightgreen.svg?style=flat)](https://anaconda.org/conda-forge/r-vegan)
+[![R-tidyverse](https://img.shields.io/badge/R_tidyverse-≥1.3.2-brightgreen.svg?style=flat)](https://www.tidyverse.org/packages/)
+[![R-ape](https://img.shields.io/badge/R_ape-≥5.6.0-brightgreen.svg?style=flat)](https://cran.r-project.org/web/packages/ape/index.html)
+
+[![R-reshape2](https://img.shields.io/badge/R_reshape2-≥1.4.4-brightgreen.svg?style=flat)](https://anaconda.org/conda-forge/r-reshape2)
 [![python3](https://img.shields.io/badge/python-≥3.7-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
