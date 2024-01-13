@@ -19,7 +19,7 @@ The pipeline's parameters can be changed in the config.yaml file.
 - **k-mer_size:** K-mer lenght for KMA distance calculation
 
 ## How to Run 
-This is a snakemake pipeline. To execute Snakemake and Miniconda have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+This is a snakemake pipeline. To execute Snakemake (v 6.1.9) and Miniconda have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
 Run the following command: 
 ```
 snakemake --use-conda --cores {CPUs}
@@ -35,3 +35,22 @@ The main output of the pipeline is gene_metrics.tsv file.
 - Flank_index_median: Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
 
 ## This Pipeline Uses 
+[![Snakemake](https://img.shields.io/badge/snakemake-≥6.1.09-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
+
+[![dRep](https://img.shields.io/badge/dRep-≥3.4.5-brightgreen.svg?style=flat)](https://drep.readthedocs.io/en/latest/)
+
+[![Prokka](https://img.shields.io/badge/Prokka-≥1.14.6-brightgreen.svg?style=flat)](https://github.com/tseemann/prokka)
+
+[![Roary](https://img.shields.io/badge/Roary-≥3.13.0-brightgreen.svg?style=flat)](https://sanger-pathogens.github.io/Roary/)
+
+[![Bedtools](https://img.shields.io/badge/Bedtools-≥2.27.1-brightgreen.svg?style=flat)](https://bedtools.readthedocs.io/en/latest/)
+
+[![seqkit](https://img.shields.io/badge/seqkit-≥2.1.0-brightgreen.svg?style=flat)](https://bioinf.shenwei.me/seqkit/)
+
+[![FastANI](https://img.shields.io/badge/FastANI-≥1.34.0-brightgreen.svg?style=flat)](https://github.com/ParBLiSS/FastANI)
+
+[![KMA](https://img.shields.io/badge/KMA-≥1.4.0-brightgreen.svg?style=flat)](https://bitbucket.org/genomicepidemiology/kma/src/master/)
+
+[![R](https://img.shields.io/badge/R-≥4.1.3-brightgreen.svg?style=flat)](https://www.r-project.org/)
+
+[![python3](https://img.shields.io/badge/python-≥3.7-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
