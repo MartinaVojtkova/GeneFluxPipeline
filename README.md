@@ -16,7 +16,7 @@ The pipeline's parameters can be changed in the [config.yaml](config.yaml) file.
 - **drep_sc:** dRep secondary clustering threshold (Default is 0.95) 
 - **genus:**  Genus for bacterial genome Annotation
 - **slice_size:** Portion of all genes to analyse (3 = one third of genes)
-- **k-mer_size:** K-mer lenght for KMA distance calculation
+- **k-mer_size:** K-mer length for KMA distance calculation
 
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
