@@ -41,6 +41,8 @@ The main output of the pipeline is gene_metrics.tsv file. See example output her
 - **Kmer_distance_median:** Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
 - **ANI_median:** Per-gene median value of the flanking region average nucleotide identity matrix
 - **Flank_index_median:** Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
+- **Proc_corelation:** The correlation between the flanking region k-mer distances and whole genome distances. (Symmetric Procrustes Analysis)
+- **Proc_significance:** The significance value for Procrustes correlation. 
 
 The complete distance/similiarity matrices are provided as supplementary output for each gene.  
 
