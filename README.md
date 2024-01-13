@@ -41,7 +41,8 @@ Run the pipeline:
 snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
-The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
+The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files).
+
 The main output of the pipeline is gene_metrics.tsv file. See example output [here](templates/gene_metrics_example.tsv). 
 
 `gene_metrics.tsv` contains: 
