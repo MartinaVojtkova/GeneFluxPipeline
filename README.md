@@ -9,7 +9,7 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found in _Input/input_template.tsv_.
 The pipeline's parameters can be changed in the config.yaml file. 
 
-### Pipeline Parameters
+### Pipeline Parameters (config.yaml)
 - **input_list:** List of the sample names and file paths. 
 - **flank_length:** The length of the upstream and downstream flanking sequence of the target genes. (Default is 10 000)
 - **drep_pc:** dRep primary clustering threshold for MASH (Default is 0.99) 
@@ -19,7 +19,19 @@ The pipeline's parameters can be changed in the config.yaml file.
 - **k-mer_size:** K-mer lenght for KMA distance calculation
 
 ## How to Run 
-
+This is a snakemake pipeline. To execute Snakemake and Miniconda have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+Run the following command: 
+```
+snakemake --use-conda --cores {CPUs}
+```
 ## Output 
+The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
+The main output of the pipeline is gene_metrics.tsv file. 
+
+**gene_metrics.tsv** contains: 
+- Gene: Gene cluster name as provided by Roary 
+- Kmer_distance_median: Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
+- ANI_median: Per-gene median value of the flanking region average nucleotide identity matrix
+- Flank_index_median: Per-gene median value of the flanking region flank identity index matrix. (Measure of flank annotation similiarity)
 
 ## This Pipeline Uses 
