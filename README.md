@@ -5,22 +5,30 @@ This pipeline was designed to analyse the gene synteny and gene flux of core and
 
 ![Pipeline (2)](https://github.com/MartinaVojtkova/GeneFluxPipeline/assets/101507399/f6bffe38-e6a9-4289-ad55-659f794bc7f4)
 
+
 ## Input
-A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](example_input/input_template.tsv).
+A tab-separated file that links the sample names to their coresponding genome data file paths needs to be provided as input. Template of the file can be found [here](templates/input_template.tsv).
 The pipeline's parameters can be changed in the [config.yaml](config.yaml) file. 
 
 ### Pipeline Parameters (config.yaml)
 - **input_list:** List of the sample names and file paths. 
 - **flank_length:** The length of the upstream and downstream flanking sequence of the target genes. (Default is 10 000)
-- **drep_pc:** dRep primary clustering threshold for MASH (Default is 0.99) 
-- **drep_sc:** dRep secondary clustering threshold (Default is 0.95) 
+- **drep_pc:**  `dRep compare` primary clustering threshold for MASH (Default is 0.99) 
+- **drep_sc:** `dRep compare` secondary clustering threshold (Default is 0.95) 
 - **genus:**  Genus for bacterial genome Annotation
 - **slice_size:** Portion of all genes to analyse (3 = one third of genes)
 - **k-mer_size:** K-mer length for KMA distance calculation
 
+To choose the correct primary and secondary clustering thresholds, please consult the [dRep docummentation](https://drep.readthedocs.io/en/latest/overview.html).
+
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
 To execute **Snakemake (v 6.1.9)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+
+Clone the repository: 
+```
+git clone https://github.com/MartinaVojtkova/GeneFluxPipeline
+```
 Load the required packages: 
 ```
 module purge
@@ -33,10 +41,11 @@ Run the pipeline:
 snakemake --use-conda --cores 40 --max-status-checks-per-second 0.01
 ```
 ## Output 
-The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files)
-The main output of the pipeline is gene_metrics.tsv file. See example output [here](example_output/gene_metrics_example.tsv). 
+The pipeline provides genome annotation files from Prokka and the output of pan-genome analysis by Roary (excluding the temporary files).
 
-**gene_metrics.tsv** contains: 
+The main output of the pipeline is gene_metrics.tsv file. See example output [here](templates/gene_metrics_example.tsv). 
+
+`gene_metrics.tsv` contains: 
 - **Gene:** Gene cluster name as provided by Roary 
 - **Kmer_distance_median:** Per-gene median value of the flanking region k-mer distance matrix. (K-mer Hamming distance used as measure)
 - **ANI_median:** Per-gene median value of the flanking region average nucleotide identity matrix
@@ -58,4 +67,9 @@ The complete distance/similiarity matrices are provided as supplementary output 
 [![KMA](https://img.shields.io/badge/KMA-≥1.4.0-brightgreen.svg?style=flat)](https://bitbucket.org/genomicepidemiology/kma/src/master/)
 
 [![R](https://img.shields.io/badge/R-≥4.1.3-brightgreen.svg?style=flat)](https://www.r-project.org/)
+[![R-vegan](https://img.shields.io/badge/R_vegan-≥2.6.0-brightgreen.svg?style=flat)](https://anaconda.org/conda-forge/r-vegan)
+[![R-tidyverse](https://img.shields.io/badge/R_tidyverse-≥1.3.2-brightgreen.svg?style=flat)](https://www.tidyverse.org/packages/)
+[![R-ape](https://img.shields.io/badge/R_ape-≥5.6.0-brightgreen.svg?style=flat)](https://cran.r-project.org/web/packages/ape/index.html)
+
+[![R-reshape2](https://img.shields.io/badge/R_reshape2-≥1.4.4-brightgreen.svg?style=flat)](https://anaconda.org/conda-forge/r-reshape2)
 [![python3](https://img.shields.io/badge/python-≥3.7-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
