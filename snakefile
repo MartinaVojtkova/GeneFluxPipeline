@@ -33,7 +33,7 @@ rule all:
         "results/metrics/flank_identity.index",
         "results/metrics/flank_only_median.ani",
         "results/metrics/procrustes.results",
-        "results/metrics/gene_metrics.tsv",
+        "results/metrics/gene.metrics",
         "results/config.yaml"
 
 rule dRep:
@@ -43,8 +43,8 @@ rule dRep:
         "results/dRep/data_tables/Mdb.csv" 
     params: 
         outdir = "results/dRep",
-        pc= config["drep_pc"], 
-        sc= config["drep_sc"]
+        pc= config["mash_pc"], 
+        sc= config["mash_sc"]
     threads: 40
     conda: "environment.yaml"
     shell:
@@ -62,7 +62,7 @@ rule dRep_make_matrices:
     conda: "environment.yaml"
     shell:
         """
-        Rscript scripts/dRep_make_matrices.R {input} {params.inlist} {output.dist} {output.sim}
+        Rscript bin/dRep_make_matrices.R {input} {params.inlist} {output.dist} {output.sim}
         """
 
 rule run_prokka:
@@ -111,7 +111,7 @@ rule presence_absence_matrix:
     shell:
         """
         mkdir -p {params.outdir}
-        Rscript scripts/create_presence_absence_matrix.R {input.metadata} {input.cluster_file} {params.outdir} 
+        Rscript bin/create_presence_absence_matrix.R {input.metadata} {input.cluster_file} {params.outdir} 
         """
 
 rule make_gene_list:
@@ -125,7 +125,7 @@ rule make_gene_list:
     conda: "environment.yaml"
     shell:
         """
-        Rscript scripts/create_gene_list.R {input} {params.outdir} {params.slice_size}
+        Rscript bin/create_gene_list.R {input} {params.outdir} {params.slice_size}
         """
 
 rule rename_reference_db:
@@ -251,15 +251,16 @@ rule concatenate_sequences:
     input:
         expand("results/sequences/{genome}/{genome}_flanking_region.fasta", genome=samples.keys())
     output:
-        "results/all_sequences_comscriptsed.fasta"
+        "results/all_sequences_combined.fasta"
     shell:
         """
+        rm results/sequences/E_coli_GCF_000005845.2/E_coli_GCF_000005845.2_flanking_region.fasta
         cat {input} > {output}
         """
 
 checkpoint split_fasta_by_gene:
     input:
-        "results/all_sequences_comscriptsed.fasta"
+        "results/all_sequences_combined.fasta"
     output:
         directory("results/per_gene_sequences/target_and_flank")
     shell:
@@ -287,9 +288,10 @@ checkpoint mask_target_sequences:
         flank_length = int(config["flank_length"])
         output_dir = "results/per_gene_sequences/flank_only"
 
+        # Create the output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
         
-        #process input files
+        # Process each input file
         for input_file in input:
             gene = os.path.basename(input_file).split('.')[0]
             output_file = f"{output}/{gene}_flank_only.fasta"
@@ -311,7 +313,7 @@ checkpoint mask_target_sequences:
                     else:
                         seq += line.strip()
                 if header:
-                    #process the last sequence
+                    # Process the last sequence
                     if len(seq) > 2 * flank_length:
                         NNN_seq = seq[:flank_length] + 'N' * (len(seq) - 2 * flank_length) + seq[-flank_length:]
                     else:
@@ -319,8 +321,7 @@ checkpoint mask_target_sequences:
                     outfile.write(header + NNN_seq + '\n')
 
 
-#This rule was adapted from Flankophile. 
-#Alix Vincent Thorn, Frank M. Aarestrup, and Patrick Munk. “Flankophile: a bioinformatic pipeline for prokaryotic genomic synteny analysis”,Microbiology Spectrum.
+
 rule index_flank_kma:
     input:
         target_and_flank="results/per_gene_sequences/target_and_flank/{gene}.fasta",
@@ -343,8 +344,6 @@ rule index_flank_kma:
         "kma index -k {params.k} -i {input.target_and_flank} -o {params.outfolder_target_and_flank};"
         "kma index -k {params.k} -i {input.flank_only} -o {params.outfolder_flank_only};"
 
-#This rule was adapted from Flankophile. 
-#Alix Vincent Thorn, Frank M. Aarestrup, and Patrick Munk. “Flankophile: a bioinformatic pipeline for prokaryotic genomic synteny analysis”,Microbiology Spectrum.
 rule flank_distance_matrix:
     input:
         ta="results/kma_index/{gene}/target_and_flank.comp.b",
@@ -401,7 +400,7 @@ rule median_target_and_flank_dist:
                 matrix = np.zeros((size, size))
 
                 for i, line in enumerate(lines[1:]):
-                    values = line.split()[1:]  
+                    values = line.split()[1:]  # Skip the first element (row name)
                     numeric_values = [int(val) if val.isdigit() else 2 * flank_length for val in values]
                     matrix[i, :len(numeric_values)] = numeric_values
 
@@ -428,7 +427,7 @@ rule median_flank_only_dist:
 
         with open(output.t_dist, 'w') as output_file:  
             
-            output_file.write("Gene\tKmer_distance_median\n")
+            output_file.write("Gene\tDistance_median\n")
 
             for filename in input:
                 gene = re.sub(r'_flank_only\.dist$', '', os.path.basename(filename))
@@ -466,7 +465,7 @@ rule get_flank_annotations_per_genome:
     shell:
         """
         mkdir -p {output}
-        python3 scripts/bed_to_flank_annotation.py --gff {input.gff} --bed {input.bed} --outdir {output}
+        python3 bin/bed_to_flank_annotation.py --gff {input.gff} --bed {input.bed} --outdir {output}
         """
 
  
@@ -566,7 +565,7 @@ rule flank_index_calculation:
         """
         mkdir -p {params.matrixdir}
         mkdir -p {params.metricsdir}
-        python3 scripts/flank_identity.py --gff {input.gff} --outfile {output.matrix} --metricsfile {output.metrics}
+        python3 bin/flank_identity.py --gff {input.gff} --outfile {output.matrix} --metricsfile {output.metrics}
         """
 
 def matrix_input(wildcards):
@@ -640,7 +639,7 @@ rule procrustes:
     shell:
         """
         mkdir -p {params.outdir}
-        Rscript scripts/procrustes.R {input.dRep} {input.kma} {output}         
+        Rscript bin/procrustes.R {input.dRep} {input.kma} {output}         
         """
 
 def proc_column_input(wildcards):
@@ -654,17 +653,50 @@ rule merge_proc_results:
         "results/metrics/procrustes.results"
     shell:
         """
-        echo -e "Gene\tProc_correlation\tProc_significance" > {output} && cat results/procrustes/temp/*_proc.metrics >> {output}
+        echo -e "Gene\tProc_Correlation\tProc_Signif" > {output} && cat results/procrustes/temp/*_proc.metrics >> {output}
         """
+
+
+rule mantel:
+    input:
+        ani = "results/fastani_results/{gene}/{gene}_ANI.matrix",
+        dRep = "results/dRep/matrices/genome_similarity_matrix.txt"
+    output:
+        "results/mantel/temp/{gene}_mantel.metrics"
+    params: 
+        outdir = "results/mantel/temp"
+    conda: "environment.yaml"
+    shell:
+        """
+        mkdir -p {params.outdir}
+        Rscript bin/mantel.R {input.dRep} {input.ani} {output}         
+        """
+
+def mantel_column_input(wildcards):
+    checkpoint_output = checkpoints.mask_target_sequences.get(**wildcards).output[0]
+    return expand("results/mantel/temp/{gene}_mantel.metrics", gene=glob_wildcards(os.path.join(checkpoint_output, "{gene}_flank_only.fasta")).gene)
+
+
+rule merge_man_results:
+    input: 
+        mantel_column_input
+    output: 
+        "results/metrics/mantel.results"
+    shell:
+        """
+        echo -e "Gene\tMan_Correlation\tMan_Signif" > {output} && cat results/procrustes/temp/*_proc.metrics >> {output}
+        """
+
 
 rule merge_metrics:
     input:
         FI="results/metrics/flank_identity.index",
         KMA="results/metrics/flank_only_median.dist",
         ANI="results/metrics/flank_only_median.ani", 
-        PROC="results/metrics/procrustes.results"
+        PROC="results/metrics/procrustes.results", 
+        MAN = "results/metrics/mantel.results"
     output:
-        "results/metrics/gene_metrics.tsv"
+        "results/metrics/gene.metrics"
     run:
         import pandas as pd
 
@@ -672,7 +704,8 @@ rule merge_metrics:
         kma = pd.read_csv(input.KMA, sep='\t')
         ani = pd.read_csv(input.ANI, sep='\t')
         proc = pd.read_csv(input.PROC, sep='\t')
-        merged_df = fi.merge(kma, on='Gene', how='outer').merge(ani, on='Gene', how='outer').merge(proc, on='Gene', how='outer')
+        man=pd.read_csv(input.MAN, sep='\t')
+        merged_df = fi.merge(kma, on='Gene', how='outer').merge(ani, on='Gene', how='outer').merge(proc, on='Gene', how='outer').merge(man, on='Gene', how='outer')
         merged_df.fillna('nan', inplace=True)
         merged_df.to_csv(str(output[0]), sep='\t', index=False)
 

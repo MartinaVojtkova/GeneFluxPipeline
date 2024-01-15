@@ -59,4 +59,4 @@ result_df <- data.frame(
   signif =  procur_result$signif
   )
 
-write.table(result_df, output_file, row.names = FALSE, col.names = FALSE)
+write.table(result_df, output_file, row.names = FALSE, col.names = FALSE, quote = FALSE)
