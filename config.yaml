@@ -11,8 +11,8 @@ drep_sc: "0.95"       #Secondary clustering threshold
 #Prokka "Genus" for Annotaring Genomes
 genus:  "Escherichia"
 
-#portions of genes to analyse (3 = one third of genes)
-slice_size: "3"
+#portions of genes to analyse (e.g 3 = one third of genes)
+slice_size: "1"
 
 #K-mer size for KMA distance calculation
 k-mer_size: "16" 
