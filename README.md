@@ -24,7 +24,7 @@ The pipeline's parameters can be changed in the [config.yaml](config.yaml) file.
 To choose the correct primary and secondary clustering thresholds, please consult the [dRep docummentation](https://drep.readthedocs.io/en/latest/overview.html).
 
 ## Run on Computerome
-This is a snakemake pipeline that was designed and tested on Computerome(The Danish National Supercomputer for Life Sciences). 
+This is a snakemake pipeline that was designed and tested on Computerome2 (The Danish National Supercomputer for Life Sciences). 
 To execute **Snakemake (v 6.1.9)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
 
 Clone the repository: 
