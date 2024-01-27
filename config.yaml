@@ -1,5 +1,5 @@
 #Path to the input list
-input_list: "/home/projects/cge/data/projects/other/gene_flux_ecoli/pipeline/input/input_list_real_data.tsv"   #List of input files and metadata
+input_list: "/path/to/input/input_list.tsv"   #List of input files and metadata
 
 #Desired flanking region length 
 flank_length: "10000"
