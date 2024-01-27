@@ -60,7 +60,7 @@ The main output of the pipeline is gene_metrics.tsv file. See example output [he
 The complete distance/similiarity matrices are provided as supplementary output for each gene.  
 
 ## This Pipeline Uses 
-[![Snakemake](https://img.shields.io/badge/snakemake-≥6.1.09-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
+[![Snakemake](https://img.shields.io/badge/snakemake-≥6.9.1-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
 [![dRep](https://img.shields.io/badge/dRep-≥3.4.5-brightgreen.svg?style=flat)](https://drep.readthedocs.io/en/latest/)
 [![Prokka](https://img.shields.io/badge/Prokka-≥1.14.6-brightgreen.svg?style=flat)](https://github.com/tseemann/prokka)
 [![Roary](https://img.shields.io/badge/Roary-≥3.13.0-brightgreen.svg?style=flat)](https://sanger-pathogens.github.io/Roary/)
