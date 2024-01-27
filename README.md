@@ -25,7 +25,7 @@ To choose the correct primary and secondary clustering thresholds, please consul
 
 ## Run on Computerome
 This is a snakemake pipeline that was designed and tested on Computerome2 (The Danish National Supercomputer for Life Sciences). 
-To execute **Snakemake (v 6.1.9)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
+To execute **Snakemake (v 6.9.1)** and **Miniconda (v 4.11.0)** have to be installed. The default number of cores is 40. This will be downscaled if less is available. 
 
 Clone the repository: 
 ```
