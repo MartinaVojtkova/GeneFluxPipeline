@@ -43,8 +43,8 @@ rule dRep:
         "results/dRep/data_tables/Mdb.csv" 
     params: 
         outdir = "results/dRep",
-        pc= config["mash_pc"], 
-        sc= config["mash_sc"]
+        pc= config["drep_pc"], 
+        sc= config["drep_sc"]
     threads: 40
     conda: "environment.yaml"
     shell:
